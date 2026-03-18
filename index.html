@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACS Live — Electronic Music Agency | Curation, Talent Buying & Brand Experiences</title>
+<meta name="description" content="ACS Live — 10 years of experience in electronic music culture. Curation, talent buying, brand partnerships, and live brand experiences.">
+<meta name="keywords" content="electronic music agency, techno agency, talent buying, curation, brand partnerships, live brand experiences, electronic music culture, Hamburg">
+<meta property="og:title" content="ACS Live — 10 Years of Electronic Music Culture">
+<meta property="og:description" content="Curation. Talent Buying. Brand Partnerships. Live Brand Experiences.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://acs-live.com">
+<link rel="canonical" href="https://acs-live.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#000;--white:#fff;--grey:#888;--grey-dark:#1a1a1a;--grey-mid:#2a2a2a;--grey-light:#aaa}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Poppins',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+::selection{background:var(--white);color:var(--black)}
+
+.noise{position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;animation:noiseMove 8s steps(10) infinite}
+@keyframes noiseMove{0%{transform:translate(0,0)}10%{transform:translate(-5%,-5%)}20%{transform:translate(-10%,5%)}30%{transform:translate(5%,-10%)}40%{transform:translate(-5%,15%)}50%{transform:translate(-10%,5%)}60%{transform:translate(15%,0)}70%{transform:translate(0,10%)}80%{transform:translate(-15%,0)}90%{transform:translate(10%,5%)}100%{transform:translate(5%,0)}}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--grey)}
+
+nav{position:fixed;top:0;left:0;width:100%;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;z-index:1000;transition:all .4s ease;backdrop-filter:blur(0px)}
+nav.scrolled{background:rgba(0,0,0,.85);backdrop-filter:blur(20px);padding:16px 48px}
+.nav-logo{height:32px;opacity:0;animation:fadeIn .8s ease .3s forwards}
+.nav-logo svg{height:100%;width:auto}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links li{opacity:0;animation:fadeIn .6s ease forwards}
+.nav-links li:nth-child(1){animation-delay:.4s}
+.nav-links li:nth-child(2){animation-delay:.5s}
+.nav-links li:nth-child(3){animation-delay:.6s}
+.nav-links li:nth-child(4){animation-delay:.7s}
+.nav-links a{color:var(--grey-light);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;transition:color .3s ease;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--white);transition:width .3s ease}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;overflow:hidden}
+#heroStars{position:absolute;inset:0;z-index:0}
+
+.hero-logo-container{position:relative;margin-bottom:48px;z-index:2}
+.hero-logo{display:flex;align-items:center;gap:0;user-select:none}
+.logo-acs{position:relative;display:inline-flex;align-items:center;justify-content:center}
+.logo-acs-bg{position:absolute;top:-6px;bottom:-6px;left:-10px;right:-6px;background:var(--white);clip-path:polygon(8% 0%,100% 0%,92% 100%,0% 100%);z-index:0}
+.logo-acs span{position:relative;z-index:1;font-size:clamp(60px,10vw,120px);font-weight:900;color:var(--black);letter-spacing:-2px;padding:10px 32px 10px 36px;line-height:1}
+.logo-live{font-size:clamp(60px,10vw,120px);font-weight:900;color:var(--white);letter-spacing:-2px;padding-left:14px;line-height:1;position:relative}
+
+/* LED glow base — flicker driven by JS */
+.logo-live{text-shadow:0 0 20px rgba(255,255,255,.8),0 0 40px rgba(255,255,255,.5),0 0 80px rgba(255,255,255,.3),0 0 120px rgba(255,255,255,.15)}
+
+.hero-tagline{font-size:clamp(14px,1.8vw,18px);font-weight:300;color:var(--grey-light);letter-spacing:2px;text-transform:uppercase;text-align:center;max-width:600px;opacity:0;animation:slideUp .8s ease .6s forwards;z-index:2}
+.hero-sub{font-size:clamp(12px,1.2vw,14px);font-weight:400;color:var(--grey);letter-spacing:1px;margin-top:12px;text-align:center;opacity:0;animation:slideUp .8s ease .9s forwards;z-index:2}
+
+.hero-cta-row{display:flex;gap:16px;margin-top:48px;opacity:0;animation:slideUp .8s ease 1.1s forwards;z-index:2}
+.btn{padding:14px 36px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background .3s ease}
+.btn:hover::after{background:rgba(255,255,255,.05)}
+.btn-primary{background:var(--white);color:var(--black)}
+.btn-primary:hover{background:var(--grey-light);transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,255,255,.1)}
+.btn-secondary{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.3)}
+.btn-secondary:hover{border-color:var(--white);transform:translateY(-2px)}
+
+.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s ease 1.5s forwards;z-index:2}
+.scroll-indicator span{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--grey)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--white),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.5);opacity:.3}}
+
+section{padding:140px 48px;position:relative}
+.section-label{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--grey);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.section-label::before{content:'';width:40px;height:1px;background:var(--grey);transition:width .4s ease}
+.section-label:hover::before{width:60px}
+h2{font-size:clamp(36px,5vw,72px);font-weight:800;line-height:1.05;letter-spacing:-1px;margin-bottom:24px}
+.text-outline{-webkit-text-stroke:1px var(--white);color:transparent;transition:all .5s ease}
+h2:hover .text-outline{color:rgba(255,255,255,.08)}
+
+.reveal{opacity:0;transform:translateY(60px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+.intro{max-width:800px;margin:0 auto}
+
+.marquee-section{padding:80px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+.marquee{display:flex;white-space:nowrap;animation:marqueeScroll 20s linear infinite}
+.marquee span{font-size:clamp(48px,8vw,100px);font-weight:900;letter-spacing:-1px;padding:0 40px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.15);transition:all .4s ease}
+.marquee span:hover{-webkit-text-stroke-color:var(--white);color:rgba(255,255,255,.05);text-shadow:0 0 30px rgba(255,255,255,.1)}
+@keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1400px;margin:60px auto 0}
+.service-card{background:var(--grey-dark);padding:48px 36px;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.16,1,.3,1);cursor:default}
+.service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--white),transparent);transform:translateX(-100%);transition:transform .6s ease}
+.service-card:hover::before{transform:translateX(100%)}
+.service-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.04),transparent 60%);opacity:0;transition:opacity .4s ease}
+.service-card:hover::after{opacity:1}
+.service-card:hover{background:#222;transform:translateY(-4px)}
+.service-card h3{font-size:20px;font-weight:700;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;transition:letter-spacing .3s ease}
+.service-card:hover h3{letter-spacing:2px}
+.service-card p{font-size:14px;line-height:1.7;color:var(--grey-light);font-weight:300}
+.service-number{font-size:72px;font-weight:900;color:rgba(255,255,255,.03);position:absolute;top:12px;right:20px;line-height:1;transition:color .4s ease}
+.service-card:hover .service-number{color:rgba(255,255,255,.06)}
+
+.brands-section{text-align:center}
+.brands-grid{display:flex;justify-content:center;gap:80px;margin-top:60px;flex-wrap:wrap}
+.brand-card{text-align:center;position:relative;padding:40px;transition:all .4s ease;cursor:default}
+.brand-card:hover{transform:scale(1.05)}
+.brand-card::before{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,0);transition:border-color .4s ease}
+.brand-card:hover::before{border-color:rgba(255,255,255,.06)}
+.brand-name{font-size:clamp(28px,3vw,42px);font-weight:800;letter-spacing:-1px;margin-bottom:8px;transition:letter-spacing .3s ease}
+.brand-card:hover .brand-name{letter-spacing:1px}
+.brand-type{font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--grey)}
+.brand-url{font-size:13px;color:var(--grey-light);margin-top:12px;text-decoration:none;transition:color .3s ease}
+.brand-url:hover{color:var(--white)}
+.brand-divider{width:1px;background:rgba(255,255,255,.1);align-self:stretch}
+
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1400px;margin:0 auto;padding:80px 0}
+.stat{text-align:center;padding:40px 20px;background:rgba(255,255,255,.02);transition:all .4s ease;position:relative;overflow:hidden}
+.stat::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:scaleX(0);transition:transform .5s ease}
+.stat:hover::after{transform:scaleX(1)}
+.stat:hover{background:rgba(255,255,255,.05)}
+.stat-number{font-size:clamp(36px,4vw,56px);font-weight:900;line-height:1;margin-bottom:8px}
+.stat-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--grey)}
+
+.approach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:60px;max-width:1200px;margin:60px auto 0}
+.approach-item{padding:40px 0;border-top:1px solid rgba(255,255,255,.08);transition:all .4s ease;position:relative}
+.approach-item::before{content:'';position:absolute;top:-1px;left:0;width:0;height:1px;background:var(--white);transition:width .5s ease}
+.approach-item:hover::before{width:100%}
+.approach-item:hover{padding-left:20px}
+.approach-item h3{font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;transition:letter-spacing .3s ease}
+.approach-item:hover h3{letter-spacing:2px}
+.approach-item p{font-size:14px;line-height:1.7;color:var(--grey-light);font-weight:300}
+
+.tech-section{background:var(--grey-dark);overflow:hidden}
+.tech-visual{display:flex;justify-content:center;align-items:center;min-height:300px;position:relative;margin-top:60px}
+.particle-field{position:relative;width:100%;height:300px}
+.particle{position:absolute;width:2px;height:2px;background:var(--white);border-radius:50%;opacity:.3;animation:particleDrift linear infinite}
+@keyframes particleDrift{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:.5}90%{opacity:.5}100%{transform:translateY(-300px) translateX(100px);opacity:0}}
+
+.cta-section{text-align:center;padding:160px 48px}
+.cta-section h2{margin-bottom:16px}
+.cta-section p{font-size:16px;color:var(--grey-light);font-weight:300;margin-bottom:48px;max-width:500px;margin-left:auto;margin-right:auto}
+
+footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+.footer-logo{height:24px}
+.footer-logo svg{height:100%;width:auto}
+.footer-links{display:flex;gap:32px}
+.footer-links a{color:var(--grey);font-size:12px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color .3s ease}
+.footer-links a:hover{color:var(--white)}
+.footer-copy{color:var(--grey);font-size:12px}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:1fr 1fr}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .approach-grid{grid-template-columns:1fr}
+  section{padding:100px 32px}
+  nav{padding:20px 24px}
+}
+@media(max-width:640px){
+  .services-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero-cta-row{flex-direction:column;align-items:center}
+  .stats-bar{grid-template-columns:1fr 1fr}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<nav id="mainNav">
+  <div class="nav-logo">
+    <svg viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="7,0 108,0 101,50 0,50" fill="white"/>
+      <text x="17" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="black">ACS</text>
+      <text x="112" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="white">LIVE</text>
+    </svg>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="hero">
+  <canvas id="heroStars"></canvas>
+  <div class="hero-logo-container">
+    <div class="hero-logo">
+      <div class="logo-acs">
+        <div class="logo-acs-bg"></div>
+        <span>ACS</span>
+      </div>
+      <div class="logo-live" id="logoLive">LIVE</div>
+    </div>
+  </div>
+  <p class="hero-tagline">10 Years of Electronic Music Culture</p>
+  <p class="hero-sub">Curation. Talent Buying. Brand Partnerships. Live Brand Experiences.</p>
+  <div class="hero-cta-row">
+    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+    <a href="#about" class="btn btn-secondary">Learn More</a>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="marquee-section">
+  <div class="marquee">
+    <span>Curation</span><span>·</span><span>Talent Buying</span><span>·</span><span>Brand Partnerships</span><span>·</span><span>Live Experiences</span><span>·</span>
+    <span>Curation</span><span>·</span><span>Talent Buying</span><span>·</span><span>Brand Partnerships</span><span>·</span><span>Live Experiences</span><span>·</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="intro">
+    <div class="reveal-left">
+      <div class="section-label">Who we are</div>
+      <h2>From first spark<br>to lasting<br><span class="text-outline">memory.</span></h2>
+      <p style="margin-top:24px;font-size:clamp(15px,1.4vw,18px);line-height:1.8;color:var(--grey-light);font-weight:300">
+        ACS Live — 10 years of experience in electronic music culture. We don't follow the scene — we shape it. Rooted in techno and electronic music, we operate at the intersection of culture, talent, and brand, connecting artists, audiences, and partners through experiences that matter.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;padding-bottom:0">
+  <div class="stats-bar">
+    <div class="stat reveal"><div class="stat-number">10+</div><div class="stat-label">Years in Electronic Music</div></div>
+    <div class="stat reveal"><div class="stat-number" data-count="500">0</div><div class="stat-label">Events Produced</div></div>
+    <div class="stat reveal"><div class="stat-number" data-count="300">0</div><div class="stat-label">Artists Booked</div></div>
+    <div class="stat reveal"><div class="stat-number">Global</div><div class="stat-label">Brand Network</div></div>
+  </div>
+</section>
+
+<section id="services">
+  <div style="max-width:1400px;margin:0 auto">
+    <div class="section-label reveal">What we do</div>
+    <h2 class="reveal">Built on culture.<br>Driven by music.</h2>
+    <p class="reveal" style="font-size:16px;color:var(--grey-light);font-weight:300;max-width:600px;margin-bottom:60px;line-height:1.7">From underground clubs to mainstage festivals — we operate across the full spectrum of electronic music culture with precision, passion, and 10 years of earned credibility.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="service-number">01</div><h3>Curation</h3><p>We curate artists, lineups, and sonic identities. Whether for a single stage or a multi-day festival, our curation reflects deep roots in electronic music culture.</p></div>
+    <div class="service-card reveal"><div class="service-number">02</div><h3>Talent Buying</h3><p>Direct artist booking and negotiation across the full spectrum of electronic music — from emerging acts to headline names. Relationships built over a decade.</p></div>
+    <div class="service-card reveal"><div class="service-number">03</div><h3>Brand Partnerships</h3><p>We connect brands with electronic music culture in ways that feel authentic. Strategic partnerships designed to reach audiences who value experience over advertising.</p></div>
+    <div class="service-card reveal"><div class="service-number">04</div><h3>Live Brand Experiences</h3><p>Immersive, culture-led brand activations at music events. We create touchpoints that become memories — for brands that want to be felt, not just seen.</p></div>
+    <div class="service-card reveal"><div class="service-number">05</div><h3>Event Production</h3><p>Full-scale production for raves, club nights, and festivals. Sound, lighting, staging, logistics — every technical element handled with the culture in mind.</p></div>
+    <div class="service-card reveal"><div class="service-number">06</div><h3>Strategy & Consulting</h3><p>Strategic consulting for labels, venues, promoters, and brands entering the electronic music space. We know the landscape — and we know how to navigate it.</p></div>
+  </div>
+</section>
+
+<section id="approach">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label reveal">How we work</div>
+    <h2 class="reveal">Culture meets<br><span class="text-outline">strategy.</span></h2>
+  </div>
+  <div class="approach-grid">
+    <div class="approach-item reveal"><h3>Brief & Vision</h3><p>We start by listening — to your goals, your audience, and the culture you want to connect with. Every project is shaped by genuine understanding of the electronic music world.</p></div>
+    <div class="approach-item reveal"><h3>Curation & Concept</h3><p>Music and brand DNA are aligned. We build concepts around authentic cultural moments — not generic activations. The lineup, the space, the story.</p></div>
+    <div class="approach-item reveal"><h3>Production & Execution</h3><p>From rider management to stage teardown. Our team handles every operational layer so the experience lands exactly as envisioned — on time, on budget.</p></div>
+    <div class="approach-item reveal"><h3>Impact & Reach</h3><p>Post-event analysis, audience insights, and cultural impact reporting. Every activation feeds a longer relationship between your brand and the community.</p></div>
+  </div>
+</section>
+
+<div class="marquee-section">
+  <div class="marquee" style="animation-direction:reverse;animation-duration:25s">
+    <span>Techno</span><span>·</span><span>House</span><span>·</span><span>Electronic</span><span>·</span><span>Festivals</span><span>·</span><span>Club Nights</span><span>·</span><span>Raves</span><span>·</span>
+    <span>Techno</span><span>·</span><span>House</span><span>·</span><span>Electronic</span><span>·</span><span>Festivals</span><span>·</span><span>Club Nights</span><span>·</span><span>Raves</span><span>·</span>
+  </div>
+</div>
+
+
+<section class="tech-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label reveal">The Culture</div>
+    <h2 class="reveal">Rooted in the<br><span class="text-outline">underground.</span></h2>
+    <p class="reveal" style="font-size:16px;color:var(--grey-light);font-weight:300;max-width:600px;line-height:1.7">Electronic music is not a genre — it's a culture. For 10 years, ACS Live has operated at its core: booking artists, shaping lineups, building brand relationships, and producing events that move people. The music is always first.</p>
+  </div>
+  <div class="tech-visual"><div class="particle-field" id="particleField"></div></div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="section-label reveal" style="justify-content:center">Get started</div>
+  <h2 class="reveal">Let's create<br>something<br><span class="text-outline">memorable.</span></h2>
+  <p class="reveal">Curation. Talent Buying. Brand Partnerships. Live Experiences. We're ready when you are.</p>
+  <div class="hero-cta-row reveal" style="justify-content:center">
+    <a href="mailto:hello@acs-live.com" class="btn btn-primary">Contact Us</a>
+    <a href="#about" class="btn btn-secondary">Back to Top</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <svg viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="7,0 108,0 101,50 0,50" fill="white"/>
+      <text x="17" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="black">ACS</text>
+      <text x="112" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="white">LIVE</text>
+    </svg>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:hello@acs-live.com">Contact</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Imprint</a>
+  </div>
+  <div class="footer-copy">© ACS Live 2026</div>
+</footer>
+
+<script>
+// ————— NAV SCROLL —————
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 80));
+
+// ═══════════════════════════════════════════════
+// RANDOM LED FLICKER (horror movie hospital style)
+// ═══════════════════════════════════════════════
+(function() {
+  const el = document.getElementById('logoLive');
+  let currentOpacity = 1;
+  let targetOpacity = 1;
+  let nextFlickerTime = 0;
+  let inBurst = false;
+  let burstCount = 0;
+  let burstRemaining = 0;
+
+  function scheduleNext() {
+    if (inBurst && burstRemaining > 0) {
+      // Rapid burst flickers — very short intervals
+      nextFlickerTime = performance.now() + 30 + Math.random() * 80;
+      burstRemaining--;
+      if (burstRemaining <= 0) inBurst = false;
+    } else {
+      // Random calm period — NEVER shine more than 1s continuously
+      const wait = 150 + Math.random() * 850;
+      nextFlickerTime = performance.now() + wait;
+      // Higher chance to start a burst (more frequent flickering)
+      if (Math.random() < 0.5) {
+        inBurst = true;
+        burstRemaining = 3 + Math.floor(Math.random() * 6);
+      }
+    }
+  }
+
+  function tick() {
+    const now = performance.now();
+
+    if (now >= nextFlickerTime) {
+      if (inBurst || Math.random() < 0.7) {
+        // Flicker OFF (random depth)
+        targetOpacity = 0.05 + Math.random() * 0.35;
+        // Very brief off-time
+        setTimeout(() => {
+          targetOpacity = 0.85 + Math.random() * 0.15;
+          // Sometimes double-flicker
+          if (Math.random() < 0.4) {
+            setTimeout(() => {
+              targetOpacity = 0.1 + Math.random() * 0.2;
+              setTimeout(() => { targetOpacity = 1; }, 20 + Math.random() * 40);
+            }, 25 + Math.random() * 50);
+          }
+        }, 15 + Math.random() * 60);
+      }
+      scheduleNext();
+    }
+
+    // Smooth interpolation
+    currentOpacity += (targetOpacity - currentOpacity) * 0.4;
+
+    const glow = currentOpacity;
+    el.style.opacity = currentOpacity;
+    el.style.textShadow = `0 0 ${20*glow}px rgba(255,255,255,${0.8*glow}),0 0 ${40*glow}px rgba(255,255,255,${0.5*glow}),0 0 ${80*glow}px rgba(255,255,255,${0.3*glow}),0 0 ${120*glow}px rgba(255,255,255,${0.15*glow})`;
+
+    requestAnimationFrame(tick);
+  }
+
+  scheduleNext();
+  requestAnimationFrame(tick);
+})();
+
+// ═══════════════════════════════════════════════
+// HERO STAR FIELD — 700+ stars, 50% more twinkle
+// ═══════════════════════════════════════════════
+(function() {
+  const canvas = document.getElementById('heroStars');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  const stars = [];
+  const STAR_COUNT = 750;
+  let mouseXLocal = 0, mouseYLocal = 0;
+  let isHeroHovered = false;
+
+  function resize() {
+    const hero = document.getElementById('hero');
+    W = canvas.width = hero.offsetWidth;
+    H = canvas.height = hero.offsetHeight;
+    // Reposition stars that are out of bounds
+    stars.forEach(s => {
+      if (s.baseX > W || s.baseY > H) {
+        s.baseX = s.x = Math.random() * W;
+        s.baseY = s.y = Math.random() * H;
+      }
+    });
+  }
+
+  // Space dust clouds
+  const dustClouds = [];
+  const DUST_COUNT = 25;
+
+  function init() {
+    resize();
+    for (let i = 0; i < STAR_COUNT; i++) {
+      const s = {
+        x: Math.random() * W,
+        y: Math.random() * H,
+        baseX: 0, baseY: 0,
+        size: Math.random() * 1.4 + 0.2,
+        // 50% brighter than previous state
+        baseBrightness: (Math.random() * 0.35 + 0.08) * 0.75,
+        // 100% slower: halved speeds
+        twinkleSpeed: (Math.random() * 0.035 + 0.008) * 0.5,
+        twinkleOffset: Math.random() * Math.PI * 2,
+        vx: 0, vy: 0
+      };
+      s.baseX = s.x;
+      s.baseY = s.y;
+      stars.push(s);
+    }
+    // Init dust clouds
+    for (let i = 0; i < DUST_COUNT; i++) {
+      dustClouds.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        baseX: 0, baseY: 0,
+        radius: 40 + Math.random() * 80,
+        brightness: 0.012 + Math.random() * 0.018,
+        driftSpeed: 0.0002 + Math.random() * 0.0003,
+        driftOffset: Math.random() * Math.PI * 2,
+        vx: 0, vy: 0
+      });
+      dustClouds[i].baseX = dustClouds[i].x;
+      dustClouds[i].baseY = dustClouds[i].y;
+    }
+  }
+  init();
+  window.addEventListener('resize', resize);
+
+  const heroEl = document.getElementById('hero');
+  heroEl.addEventListener('mousemove', e => {
+    const rect = heroEl.getBoundingClientRect();
+    mouseXLocal = e.clientX - rect.left;
+    mouseYLocal = e.clientY - rect.top;
+    isHeroHovered = true;
+  });
+  heroEl.addEventListener('mouseleave', () => { isHeroHovered = false; });
+
+  function drawStars(time) {
+    ctx.clearRect(0, 0, W, H);
+
+    // Draw space dust clouds first (behind stars)
+    for (let i = 0; i < dustClouds.length; i++) {
+      const d = dustClouds[i];
+      // Gentle drift
+      const drift = Math.sin(time * d.driftSpeed + d.driftOffset);
+      d.x = d.baseX + drift * 30;
+      d.y = d.baseY + Math.cos(time * d.driftSpeed * 0.7 + d.driftOffset) * 20;
+
+      // Cursor interaction — push dust away gently
+      if (isHeroHovered) {
+        const dx = d.x - mouseXLocal;
+        const dy = d.y - mouseYLocal;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const influence = Math.max(0, 1 - dist / 250);
+        d.vx += (dx / (dist + 1)) * influence * 0.15;
+        d.vy += (dy / (dist + 1)) * influence * 0.15;
+      }
+      d.x += d.vx; d.y += d.vy;
+      d.vx *= 0.97; d.vy *= 0.97;
+
+      const grd = ctx.createRadialGradient(d.x, d.y, 0, d.x, d.y, d.radius);
+      grd.addColorStop(0, `rgba(255,255,255,${d.brightness})`);
+      grd.addColorStop(0.5, `rgba(255,255,255,${d.brightness * 0.3})`);
+      grd.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(d.x - d.radius, d.y - d.radius, d.radius * 2, d.radius * 2);
+    }
+
+    // Draw stars
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      // 50% less twinkle amplitude, 100% slower (speed already halved above)
+      const twinkle = Math.sin(time * s.twinkleSpeed + s.twinkleOffset);
+      const combined = twinkle * 0.25 + 0.875; // reduced amplitude: was ±0.5, now ±0.25
+      let alpha = s.baseBrightness * combined;
+
+      if (isHeroHovered) {
+        const dx = s.x - mouseXLocal;
+        const dy = s.y - mouseYLocal;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const influence = Math.max(0, 1 - dist / 180);
+        s.vx += (dx / (dist + 1)) * influence * 0.3;
+        s.vy += (dy / (dist + 1)) * influence * 0.3;
+        alpha += influence * 0.2;
+      }
+
+      s.x += s.vx; s.y += s.vy;
+      s.vx *= 0.96; s.vy *= 0.96;
+      s.x += (s.baseX - s.x) * 0.01;
+      s.y += (s.baseY - s.y) * 0.01;
+      alpha = Math.max(0, Math.min(alpha, 0.525));
+
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+      ctx.fill();
+
+      if (s.size > 1 && alpha > 0.2) {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size * 3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${alpha * 0.06})`;
+        ctx.fill();
+      }
+    }
+
+    // Cursor proximity dust glow
+    if (isHeroHovered) {
+      const grd = ctx.createRadialGradient(mouseXLocal, mouseYLocal, 0, mouseXLocal, mouseYLocal, 100);
+      grd.addColorStop(0, 'rgba(255,255,255,0.008)');
+      grd.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, W, H);
+    }
+    requestAnimationFrame(drawStars);
+  }
+  requestAnimationFrame(drawStars);
+})();
+
+// ————— REVEAL ON SCROLL —————
+const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ————— COUNTER ANIMATION —————
+document.querySelectorAll('.stat-number[data-count]').forEach(el => {
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = parseInt(el.dataset.count);
+        const start = performance.now();
+        (function update(now) {
+          const p = Math.min((now - start) / 2000, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1-p, 3))) + '+';
+          if (p < 1) requestAnimationFrame(update);
+        })(start);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 }).observe(el);
+});
+
+// ————— TECH PARTICLES —————
+const field = document.getElementById('particleField');
+for (let i = 0; i < 60; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random()*100+'%';
+  p.style.top = Math.random()*100+'%';
+  p.style.animationDuration = (3+Math.random()*5)+'s';
+  p.style.animationDelay = Math.random()*5+'s';
+  p.style.width = (1+Math.random()*2)+'px';
+  p.style.height = p.style.width;
+  field.appendChild(p);
+}
+
+// ————— SERVICE CARD GLOW + TILT —————
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
+    card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
+    const tx = (e.clientX-r.left)/r.width-0.5, ty = (e.clientY-r.top)/r.height-0.5;
+    card.style.transform = `translateY(-4px) perspective(600px) rotateY(${tx*5}deg) rotateX(${-ty*5}deg)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+// ————— SMOOTH SCROLL —————
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ————— PARALLAX HEADERS —————
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('h2').forEach(h => {
+    const r = h.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      h.style.transform = `translateY(${(r.top/window.innerHeight-0.5)*15}px)`;
+    }
+  });
+});
+</script>
+</body>
+</html>
