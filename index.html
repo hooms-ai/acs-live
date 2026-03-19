@@ -50,15 +50,15 @@ nav.scrolled{background:rgba(0,0,0,.85);backdrop-filter:blur(20px);padding:16px 
 .hero-logo{display:flex;align-items:center;gap:0;user-select:none}
 .logo-acs{position:relative;display:inline-flex;align-items:center;justify-content:center}
 .logo-acs-bg{position:absolute;top:-6px;bottom:-6px;left:-10px;right:-6px;background:var(--white);clip-path:polygon(8% 0%,100% 0%,92% 100%,0% 100%);z-index:0}
-.logo-acs span{position:relative;z-index:1;font-size:clamp(60px,10vw,120px);font-weight:900;color:var(--black);letter-spacing:-2px;padding:10px 32px 10px 36px;line-height:1}
-.logo-live{font-size:clamp(60px,10vw,120px);font-weight:900;color:var(--white);letter-spacing:-2px;padding-left:14px;line-height:1;position:relative}
+.logo-acs span{position:relative;z-index:1;font-size:clamp(90px,15vw,180px);font-weight:900;color:var(--black);letter-spacing:-3px;padding:14px 48px 14px 54px;line-height:1}
+.logo-live{font-size:clamp(90px,15vw,180px);font-weight:900;color:var(--white);letter-spacing:-3px;padding-left:20px;line-height:1;position:relative}
 
 /* LED glow base — flicker driven by JS */
 .logo-live{text-shadow:0 0 20px rgba(255,255,255,.8),0 0 40px rgba(255,255,255,.5),0 0 80px rgba(255,255,255,.3),0 0 120px rgba(255,255,255,.15)}
 
-.hero-tagline{font-size:clamp(28px,3.6vw,36px);font-weight:300;color:var(--grey-light);letter-spacing:2px;text-transform:uppercase;text-align:center;max-width:900px;opacity:0;animation:slideUp .8s ease .6s forwards;z-index:2}
-.hero-sub{font-size:clamp(22px,2.4vw,28px);font-weight:400;color:var(--grey);letter-spacing:1px;margin-top:12px;text-align:center;opacity:0;animation:slideUp .8s ease .9s forwards;z-index:2}
-.live-glow{font-weight:900;color:var(--white);text-transform:uppercase;text-shadow:0 0 12px rgba(255,255,255,.5),0 0 28px rgba(255,255,255,.2),0 0 60px rgba(255,255,255,.08)}
+.hero-tagline{font-size:clamp(20px,2.5vw,25px);font-weight:300;color:var(--grey-light);letter-spacing:2px;text-transform:uppercase;text-align:center;max-width:900px;opacity:0;animation:slideUp .8s ease .6s forwards;z-index:2}
+.hero-sub{font-size:clamp(15px,1.7vw,20px);font-weight:400;color:var(--grey);letter-spacing:1px;margin-top:12px;text-align:center;opacity:0;animation:slideUp .8s ease .9s forwards;z-index:2}
+.live-flicker{font-weight:900;color:var(--white);text-transform:uppercase;text-shadow:0 0 20px rgba(255,255,255,.8),0 0 40px rgba(255,255,255,.5),0 0 80px rgba(255,255,255,.3),0 0 120px rgba(255,255,255,.15);display:inline}
 
 .hero-cta-row{display:flex;gap:16px;margin-top:48px;opacity:0;animation:slideUp .8s ease 1.1s forwards;z-index:2}
 .btn{padding:14px 36px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
@@ -210,7 +210,7 @@ footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;just
     </div>
   </div>
   <p class="hero-tagline">10 Years of Electronic Music Culture</p>
-  <p class="hero-sub">Curation. Talent Buying. Brand Partnerships. <span class="live-glow">LIVE</span> Brand Experiences.</p>
+  <p class="hero-sub">Curation. Talent Buying. Brand Partnerships. <span class="live-flicker">LIVE</span> Brand Experiences.</p>
   <div class="hero-cta-row">
     <a href="#contact" class="btn btn-primary">Get in Touch</a>
     <a href="#about" class="btn btn-secondary">Learn More</a>
@@ -259,7 +259,7 @@ footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;just
     <div class="service-card reveal"><div class="service-number">01</div><h3>Curation</h3><p>We curate artists, lineups, and sonic identities. Whether for a single stage or a multi-day festival, our curation reflects deep roots in electronic music culture.</p></div>
     <div class="service-card reveal"><div class="service-number">02</div><h3>Talent Buying</h3><p>Direct artist booking and negotiation across the full spectrum of electronic music — from emerging acts to headline names. Relationships built over a decade.</p></div>
     <div class="service-card reveal"><div class="service-number">03</div><h3>Brand Partnerships</h3><p>We connect brands with electronic music culture in ways that feel authentic. Strategic partnerships designed to reach audiences who value experience over advertising.</p></div>
-    <div class="service-card reveal"><div class="service-number">04</div><h3>Live Brand Experiences</h3><p>Immersive, culture-led brand activations at music events. We create touchpoints that become memories — for brands that want to be felt, not just seen.</p></div>
+    <div class="service-card reveal"><div class="service-number">04</div><h3><span class="live-flicker">LIVE</span> Brand Experiences</h3><p>Immersive, culture-led brand activations at music events. We create touchpoints that become memories — for brands that want to be felt, not just seen.</p></div>
     <div class="service-card reveal"><div class="service-number">05</div><h3>Event Production</h3><p>Full-scale production for raves, club nights, and festivals. Sound, lighting, staging, logistics — every technical element handled with the culture in mind.</p></div>
     <div class="service-card reveal"><div class="service-number">06</div><h3>Strategy & Consulting</h3><p>Strategic consulting for labels, venues, promoters, and brands entering the electronic music space. We know the landscape — and we know how to navigate it.</p></div>
   </div>
@@ -283,15 +283,14 @@ footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;just
   <div style="max-width:1200px;margin:0 auto">
     <div class="section-label reveal">The Culture</div>
     <h2 class="reveal">Rooted in the<br><span class="text-outline">underground.</span></h2>
-    <p class="reveal" style="font-size:16px;color:var(--grey-light);font-weight:300;max-width:600px;line-height:1.7">Electronic music is not a genre — it's a culture. For 10 years, ACS Live has operated at its core: booking artists, shaping lineups, building brand relationships, and producing events that move people. The music is always first.</p>
+    <p class="reveal" style="font-size:16px;color:var(--grey-light);font-weight:300;max-width:600px;line-height:1.7">Electronic music is not a genre — it's a culture. For 10 years, ACS <span class="live-flicker">LIVE</span> has operated at its core: booking artists, shaping lineups, building brand relationships, and producing events that move people. The music is always first.</p>
   </div>
-  <div class="tech-visual"><div class="particle-field" id="particleField"></div></div>
 </section>
 
 <section class="cta-section" id="contact">
   <div class="section-label reveal" style="justify-content:center">Get started</div>
   <h2 class="reveal">Let's create<br>something<br><span class="text-outline">memorable.</span></h2>
-  <p class="reveal">Curation. Talent Buying. Brand Partnerships. Live Experiences. We're ready when you are.</p>
+  <p class="reveal">Curation. Talent Buying. Brand Partnerships. <span class="live-flicker">LIVE</span> Experiences. We're ready when you are.</p>
   <div class="hero-cta-row reveal" style="justify-content:center">
     <a href="mailto:hello@acs-live.com" class="btn btn-primary">Contact Us</a>
     <a href="#about" class="btn btn-secondary">Back to Top</a>
@@ -311,7 +310,7 @@ footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;just
     <a href="#">Privacy Policy</a>
     <a href="#">Imprint</a>
   </div>
-  <div class="footer-copy">© ACS Live 2026</div>
+  <div class="footer-copy">© ACS <span class="live-flicker">LIVE</span> 2026</div>
 </footer>
 
 <script>
@@ -323,7 +322,8 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.
 // RANDOM LED FLICKER (horror movie hospital style)
 // ═══════════════════════════════════════════════
 (function() {
-  const el = document.getElementById('logoLive');
+  const logoEl = document.getElementById('logoLive');
+  const flickerEls = document.querySelectorAll('.live-flicker');
   let currentOpacity = 1;
   let targetOpacity = 1;
   let nextFlickerTime = 0;
@@ -333,15 +333,12 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.
 
   function scheduleNext() {
     if (inBurst && burstRemaining > 0) {
-      // Rapid burst flickers — very short intervals
       nextFlickerTime = performance.now() + 30 + Math.random() * 80;
       burstRemaining--;
       if (burstRemaining <= 0) inBurst = false;
     } else {
-      // Random calm period — NEVER shine more than 1s continuously
       const wait = 150 + Math.random() * 850;
       nextFlickerTime = performance.now() + wait;
-      // Higher chance to start a burst (more frequent flickering)
       if (Math.random() < 0.5) {
         inBurst = true;
         burstRemaining = 3 + Math.floor(Math.random() * 6);
@@ -354,12 +351,9 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.
 
     if (now >= nextFlickerTime) {
       if (inBurst || Math.random() < 0.7) {
-        // Flicker OFF (random depth)
         targetOpacity = 0.05 + Math.random() * 0.35;
-        // Very brief off-time
         setTimeout(() => {
           targetOpacity = 0.85 + Math.random() * 0.15;
-          // Sometimes double-flicker
           if (Math.random() < 0.4) {
             setTimeout(() => {
               targetOpacity = 0.1 + Math.random() * 0.2;
@@ -371,12 +365,18 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.
       scheduleNext();
     }
 
-    // Smooth interpolation
     currentOpacity += (targetOpacity - currentOpacity) * 0.4;
 
     const glow = currentOpacity;
-    el.style.opacity = currentOpacity;
-    el.style.textShadow = `0 0 ${20*glow}px rgba(255,255,255,${0.8*glow}),0 0 ${40*glow}px rgba(255,255,255,${0.5*glow}),0 0 ${80*glow}px rgba(255,255,255,${0.3*glow}),0 0 ${120*glow}px rgba(255,255,255,${0.15*glow})`;
+    const shadow = `0 0 ${20*glow}px rgba(255,255,255,${0.8*glow}),0 0 ${40*glow}px rgba(255,255,255,${0.5*glow}),0 0 ${80*glow}px rgba(255,255,255,${0.3*glow}),0 0 ${120*glow}px rgba(255,255,255,${0.15*glow})`;
+
+    logoEl.style.opacity = currentOpacity;
+    logoEl.style.textShadow = shadow;
+
+    flickerEls.forEach(function(el) {
+      el.style.opacity = currentOpacity;
+      el.style.textShadow = shadow;
+    });
 
     requestAnimationFrame(tick);
   }
