@@ -210,7 +210,7 @@ footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;just
     </div>
   </div>
   <p class="hero-tagline">10 Years of Electronic Music Culture</p>
-  <p class="hero-sub">Curation. Talent Buying. Brand Partnerships. <span class="live-flicker">LIVE</span> Brand Experiences.</p>
+  <p class="hero-sub">Curation. Talent Buying. Brand Partnerships. <span class="live-flicker" id="heroLive">LIVE</span> Brand Experiences.</p>
   <div class="hero-cta-row">
     <a href="#contact" class="btn btn-primary">Get in Touch</a>
     <a href="#about" class="btn btn-secondary">Learn More</a>
@@ -292,7 +292,7 @@ footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;just
   <h2 class="reveal">Let's create<br>something<br><span class="text-outline">memorable.</span></h2>
   <p class="reveal">Curation. Talent Buying. Brand Partnerships. <span class="live-flicker">LIVE</span> Experiences. We're ready when you are.</p>
   <div class="hero-cta-row reveal" style="justify-content:center">
-    <a href="mailto:hello@acs-live.com" class="btn btn-primary">Contact Us</a>
+    <a href="mailto:info@acs-live.com" class="btn btn-primary">Contact Us</a>
     <a href="#about" class="btn btn-secondary">Back to Top</a>
   </div>
 </section>
@@ -306,7 +306,7 @@ footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;just
     </svg>
   </div>
   <div class="footer-links">
-    <a href="mailto:hello@acs-live.com">Contact</a>
+    <a href="mailto:info@acs-live.com">Contact</a>
     <a href="#">Privacy Policy</a>
     <a href="#">Imprint</a>
   </div>
@@ -364,10 +364,26 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.
   requestAnimationFrame(tick);
 })();
 
-// ── INLINE "LIVE" flicker (gentle — on for 1-3s, brief subtle flicker, back on) ──
+// ── HERO "LIVE" pulse (smooth sinusoidal glow, no flicker) ──
 (function() {
-  const els = document.querySelectorAll('.live-flicker');
-  let cur = 1, target = 1, next = 0;
+  const el = document.getElementById('heroLive');
+  const start = performance.now();
+
+  function tick() {
+    var t = (performance.now() - start) / 1000;
+    var g = 0.55 + 0.45 * Math.sin(t * 1.2);
+    var shadow = '0 0 '+20*g+'px rgba(255,255,255,'+0.8*g+'),0 0 '+40*g+'px rgba(255,255,255,'+0.5*g+'),0 0 '+80*g+'px rgba(255,255,255,'+0.3*g+'),0 0 '+120*g+'px rgba(255,255,255,'+0.15*g+')';
+    el.style.color = 'rgba(255,255,255,'+g+')';
+    el.style.textShadow = shadow;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+// ── INLINE "LIVE" flicker (all other .live-flicker elements) ──
+(function() {
+  var els = document.querySelectorAll('.live-flicker:not(#heroLive)');
+  var cur = 1, target = 1, next = 0;
 
   function schedule() {
     next = performance.now() + 1000 + Math.random() * 2000;
