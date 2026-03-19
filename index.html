@@ -397,7 +397,7 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.
   const ctx = canvas.getContext('2d');
   let W, H;
   const stars = [];
-  const STAR_COUNT = 750;
+  const STAR_COUNT = 1800;
   let mouseXLocal = 0, mouseYLocal = 0;
   let isHeroHovered = false;
 
@@ -416,7 +416,7 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.
 
   // Space dust clouds
   const dustClouds = [];
-  const DUST_COUNT = 25;
+  const DUST_COUNT = 60;
 
   function init() {
     resize();
