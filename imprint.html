@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imprint — ACS Live</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#000;--white:#fff;--grey:#888;--grey-dark:#1a1a1a;--grey-mid:#2a2a2a;--grey-light:#aaa}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--black);color:var(--white);min-height:100vh}
+::selection{background:var(--white);color:var(--black)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--grey)}
+
+nav{position:fixed;top:0;left:0;width:100%;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;z-index:1000;background:rgba(0,0,0,.85);backdrop-filter:blur(20px)}
+.nav-logo{height:32px}
+.nav-logo svg{height:100%;width:auto}
+.nav-back{color:var(--grey-light);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;transition:color .3s ease}
+.nav-back:hover{color:var(--white)}
+
+.page{max-width:800px;margin:0 auto;padding:140px 48px 100px}
+.page-label{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--grey);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.page-label::before{content:'';width:40px;height:1px;background:var(--grey)}
+h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.05;letter-spacing:-1px;margin-bottom:60px}
+
+.block{margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
+.block:last-of-type{border-bottom:none}
+.block h2{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:16px}
+.block p{font-size:15px;line-height:1.8;color:var(--grey-light);font-weight:300}
+.block p + p{margin-top:12px}
+.block a{color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);transition:border-color .3s ease}
+.block a:hover{border-color:var(--white)}
+
+footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+.footer-logo{height:24px}
+.footer-logo svg{height:100%;width:auto}
+.footer-links{display:flex;gap:32px}
+.footer-links a{color:var(--grey);font-size:12px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color .3s ease}
+.footer-links a:hover{color:var(--white)}
+.footer-copy{color:var(--grey);font-size:12px}
+
+@media(max-width:640px){
+  nav{padding:20px 24px}
+  .page{padding:120px 24px 80px}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="7,0 108,0 101,50 0,50" fill="white"/>
+      <text x="17" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="black">ACS</text>
+      <text x="112" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="white">LIVE</text>
+    </svg>
+  </a>
+  <a href="index.html" class="nav-back">← Back</a>
+</nav>
+
+<main class="page">
+  <div class="page-label">Legal</div>
+  <h1>Imprint</h1>
+
+  <div class="block">
+    <h2>Company</h2>
+    <p>ACS Live GmbH</p>
+    <p>Raboisen 32<br>20095 Hamburg</p>
+    <p>Represented by: Alexander Müller</p>
+  </div>
+
+  <div class="block">
+    <h2>Register Entry</h2>
+    <p>Commercial Register Number: HRB 197267 · Amtsgericht Hamburg</p>
+    <p>VAT ID: [VAT ID]</p>
+  </div>
+
+  <div class="block">
+    <h2>Contact</h2>
+    <p>Phone: +49 152 26480470</p>
+    <p>Email: <a href="mailto:info@acs-live.de">info@acs-live.de</a></p>
+  </div>
+
+  <div class="block">
+    <h2>Consumer Dispute Resolution</h2>
+    <p>We are neither willing nor obligated to participate in dispute resolution proceedings before a consumer arbitration board.</p>
+  </div>
+
+  <div class="block">
+    <p>© 2026 ACS Live GmbH – All rights reserved.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo">
+    <svg viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="7,0 108,0 101,50 0,50" fill="white"/>
+      <text x="17" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="black">ACS</text>
+      <text x="112" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="white">LIVE</text>
+    </svg>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:info@acs-live.de">Contact</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="imprint.html">Imprint</a>
+  </div>
+  <div class="footer-copy">© ACS Live 2026</div>
+</footer>
+
+</body>
+</html>

@@ -298,17 +298,10 @@ footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;just
 </section>
 
 <footer>
-  <div class="footer-logo">
-    <svg viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="7,0 108,0 101,50 0,50" fill="white"/>
-      <text x="17" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="black">ACS</text>
-      <text x="112" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="white">LIVE</text>
-    </svg>
-  </div>
   <div class="footer-links">
     <a href="mailto:info@acs-live.com">Contact</a>
-    <a href="#">Privacy Policy</a>
-    <a href="#">Imprint</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="imprint.html">Imprint</a>
   </div>
   <div class="footer-copy">© ACS <span class="live-flicker">LIVE</span> 2026</div>
 </footer>
@@ -380,29 +373,40 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.
   requestAnimationFrame(tick);
 })();
 
-// ── INLINE "LIVE" flicker (all other .live-flicker elements) ──
+// ── INLINE "LIVE" flicker (same aggressive hospital-style as logo) ──
 (function() {
   var els = document.querySelectorAll('.live-flicker:not(#heroLive)');
   var cur = 1, target = 1, next = 0;
+  var burst = false, burstRem = 0;
 
   function schedule() {
-    next = performance.now() + 1000 + Math.random() * 2000;
+    if (burst && burstRem > 0) {
+      next = performance.now() + 30 + Math.random() * 80;
+      burstRem--;
+      if (burstRem <= 0) burst = false;
+    } else {
+      next = performance.now() + 150 + Math.random() * 850;
+      if (Math.random() < 0.5) { burst = true; burstRem = 3 + Math.floor(Math.random() * 6); }
+    }
   }
 
   function tick() {
     if (performance.now() >= next) {
-      var dips = 1 + Math.floor(Math.random() * 3);
-      var d = 0;
-      for (var i = 0; i < dips; i++) {
-        (function(dd) { setTimeout(function() { target = 0.15 + Math.random() * 0.25; }, dd); })(d);
-        d += 30 + Math.random() * 50;
-        (function(dd) { setTimeout(function() { target = 0.85 + Math.random() * 0.15; }, dd); })(d);
-        d += 25 + Math.random() * 40;
+      if (burst || Math.random() < 0.7) {
+        target = 0.05 + Math.random() * 0.35;
+        setTimeout(function() {
+          target = 0.85 + Math.random() * 0.15;
+          if (Math.random() < 0.4) {
+            setTimeout(function() {
+              target = 0.1 + Math.random() * 0.2;
+              setTimeout(function() { target = 1; }, 20 + Math.random() * 40);
+            }, 25 + Math.random() * 50);
+          }
+        }, 15 + Math.random() * 60);
       }
-      (function(dd) { setTimeout(function() { target = 1; }, dd); })(d);
       schedule();
     }
-    cur += (target - cur) * 0.35;
+    cur += (target - cur) * 0.4;
     var g = cur;
     var shadow = '0 0 '+20*g+'px rgba(255,255,255,'+0.8*g+'),0 0 '+40*g+'px rgba(255,255,255,'+0.5*g+'),0 0 '+80*g+'px rgba(255,255,255,'+0.3*g+'),0 0 '+120*g+'px rgba(255,255,255,'+0.15*g+')';
     els.forEach(function(el) {
