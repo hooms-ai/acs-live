@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ACS Live — Electronic Music Agency | Curation, Talent Buying & Brand Experiences</title>
-<meta name="description" content="ACS <span class="live-flicker">LIVE</span> — 10 years of experience in electronic music culture. Curation, talent buying, brand partnerships, and live brand experiences.">
+<meta name="description" content="ACS LIVE — 10 years of experience in electronic music culture. Curation, talent buying, brand partnerships, and live brand experiences.">
 <meta name="keywords" content="electronic music agency, techno agency, talent buying, curation, brand partnerships, live brand experiences, electronic music culture, Hamburg">
 <meta property="og:title" content="ACS Live — 10 Years of Electronic Music Culture">
 <meta property="og:description" content="Curation. Talent Buying. Brand Partnerships. Live Brand Experiences.">
@@ -94,8 +94,8 @@ h2:hover .text-outline{color:rgba(255,255,255,.08)}
 .marquee-section{padding:80px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
 .marquee-label{text-align:center;font-size:16.5px;text-transform:uppercase;letter-spacing:4px;color:rgba(255,255,255,.6);margin-bottom:32px;text-shadow:0 0 12px rgba(255,255,255,.3),0 0 24px rgba(255,255,255,.12)}
 .marquee{display:flex;white-space:nowrap;animation:marqueeScroll 20s linear infinite}
-.marquee span{font-size:clamp(48px,8vw,100px);font-weight:900;letter-spacing:-1px;padding:0 40px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.45);text-shadow:0 0 15px rgba(255,255,255,.15),0 0 30px rgba(255,255,255,.08);transition:all .4s ease}
-.marquee span:hover{-webkit-text-stroke-color:var(--white);color:rgba(255,255,255,.15);text-shadow:0 0 40px rgba(255,255,255,.35),0 0 80px rgba(255,255,255,.15)}
+.marquee span{font-size:clamp(48px,8vw,100px);font-weight:900;letter-spacing:-1px;padding:0 40px;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.675);text-shadow:0 0 20px rgba(255,255,255,.25),0 0 40px rgba(255,255,255,.12);text-transform:uppercase;transition:all .4s ease}
+.marquee span:hover{-webkit-text-stroke-color:var(--white);color:rgba(255,255,255,.2);text-shadow:0 0 40px rgba(255,255,255,.5),0 0 80px rgba(255,255,255,.25)}
 @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1400px;margin:60px auto 0}
@@ -117,8 +117,8 @@ h2:hover .text-outline{color:rgba(255,255,255,.08)}
 .brand-card:hover{transform:scale(1.05)}
 .brand-card::before{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,0);transition:border-color .4s ease}
 .brand-card:hover::before{border-color:rgba(255,255,255,.06)}
-.brand-name{font-size:clamp(28px,3vw,42px);font-weight:800;letter-spacing:-1px;margin-bottom:8px;transition:letter-spacing .3s ease,filter .3s ease,text-shadow .3s ease;color:#fff;filter:brightness(2);text-shadow:0 0 20px rgba(255,255,255,.3)}
-.brand-card:hover .brand-name{letter-spacing:1px;filter:brightness(2);text-shadow:0 0 30px rgba(255,255,255,.5)}
+.brand-name{font-size:clamp(28px,3vw,42px);font-weight:800;letter-spacing:-1px;margin-bottom:8px;transition:letter-spacing .3s ease}
+.brand-card:hover .brand-name{letter-spacing:1px}
 .brand-type{font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--grey)}
 .brand-url{font-size:13px;color:var(--grey-light);margin-top:12px;text-decoration:none;transition:color .3s ease}
 .brand-url:hover{color:var(--white)}
@@ -321,67 +321,81 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.
 // ═══════════════════════════════════════════════
 // RANDOM LED FLICKER (horror movie hospital style)
 // ═══════════════════════════════════════════════
+// ── LOGO flicker (aggressive, hospital-style) ──
 (function() {
   const logoEl = document.getElementById('logoLive');
-  const flickerEls = document.querySelectorAll('.live-flicker');
-  let currentOpacity = 1;
-  let targetOpacity = 1;
-  let nextFlickerTime = 0;
-  let inBurst = false;
-  let burstCount = 0;
-  let burstRemaining = 0;
+  let cur = 1, target = 1, next = 0;
+  let burst = false, burstRem = 0;
 
-  function scheduleNext() {
-    if (inBurst && burstRemaining > 0) {
-      nextFlickerTime = performance.now() + 30 + Math.random() * 80;
-      burstRemaining--;
-      if (burstRemaining <= 0) inBurst = false;
+  function schedule() {
+    if (burst && burstRem > 0) {
+      next = performance.now() + 30 + Math.random() * 80;
+      burstRem--;
+      if (burstRem <= 0) burst = false;
     } else {
-      const wait = 150 + Math.random() * 850;
-      nextFlickerTime = performance.now() + wait;
-      if (Math.random() < 0.5) {
-        inBurst = true;
-        burstRemaining = 3 + Math.floor(Math.random() * 6);
-      }
+      next = performance.now() + 150 + Math.random() * 850;
+      if (Math.random() < 0.5) { burst = true; burstRem = 3 + Math.floor(Math.random() * 6); }
     }
   }
 
   function tick() {
-    const now = performance.now();
-
-    if (now >= nextFlickerTime) {
-      if (inBurst || Math.random() < 0.7) {
-        targetOpacity = 0.05 + Math.random() * 0.35;
+    if (performance.now() >= next) {
+      if (burst || Math.random() < 0.7) {
+        target = 0.05 + Math.random() * 0.35;
         setTimeout(() => {
-          targetOpacity = 0.85 + Math.random() * 0.15;
+          target = 0.85 + Math.random() * 0.15;
           if (Math.random() < 0.4) {
             setTimeout(() => {
-              targetOpacity = 0.1 + Math.random() * 0.2;
-              setTimeout(() => { targetOpacity = 1; }, 20 + Math.random() * 40);
+              target = 0.1 + Math.random() * 0.2;
+              setTimeout(() => { target = 1; }, 20 + Math.random() * 40);
             }, 25 + Math.random() * 50);
           }
         }, 15 + Math.random() * 60);
       }
-      scheduleNext();
+      schedule();
     }
-
-    currentOpacity += (targetOpacity - currentOpacity) * 0.4;
-
-    const glow = currentOpacity;
-    const shadow = `0 0 ${20*glow}px rgba(255,255,255,${0.8*glow}),0 0 ${40*glow}px rgba(255,255,255,${0.5*glow}),0 0 ${80*glow}px rgba(255,255,255,${0.3*glow}),0 0 ${120*glow}px rgba(255,255,255,${0.15*glow})`;
-
-    logoEl.style.opacity = currentOpacity;
-    logoEl.style.textShadow = shadow;
-
-    flickerEls.forEach(function(el) {
-      el.style.opacity = currentOpacity;
-      el.style.textShadow = shadow;
-    });
-
+    cur += (target - cur) * 0.4;
+    const g = cur;
+    logoEl.style.opacity = cur;
+    logoEl.style.textShadow = `0 0 ${20*g}px rgba(255,255,255,${0.8*g}),0 0 ${40*g}px rgba(255,255,255,${0.5*g}),0 0 ${80*g}px rgba(255,255,255,${0.3*g}),0 0 ${120*g}px rgba(255,255,255,${0.15*g})`;
     requestAnimationFrame(tick);
   }
+  schedule();
+  requestAnimationFrame(tick);
+})();
 
-  scheduleNext();
+// ── INLINE "LIVE" flicker (gentle — on for 1-3s, brief subtle flicker, back on) ──
+(function() {
+  const els = document.querySelectorAll('.live-flicker');
+  let cur = 1, target = 1, next = 0;
+
+  function schedule() {
+    next = performance.now() + 1000 + Math.random() * 2000;
+  }
+
+  function tick() {
+    if (performance.now() >= next) {
+      var dips = 1 + Math.floor(Math.random() * 3);
+      var d = 0;
+      for (var i = 0; i < dips; i++) {
+        (function(dd) { setTimeout(function() { target = 0.15 + Math.random() * 0.25; }, dd); })(d);
+        d += 30 + Math.random() * 50;
+        (function(dd) { setTimeout(function() { target = 0.85 + Math.random() * 0.15; }, dd); })(d);
+        d += 25 + Math.random() * 40;
+      }
+      (function(dd) { setTimeout(function() { target = 1; }, dd); })(d);
+      schedule();
+    }
+    cur += (target - cur) * 0.35;
+    var g = cur;
+    var shadow = '0 0 '+20*g+'px rgba(255,255,255,'+0.8*g+'),0 0 '+40*g+'px rgba(255,255,255,'+0.5*g+'),0 0 '+80*g+'px rgba(255,255,255,'+0.3*g+'),0 0 '+120*g+'px rgba(255,255,255,'+0.15*g+')';
+    els.forEach(function(el) {
+      el.style.color = 'rgba(255,255,255,'+cur+')';
+      el.style.textShadow = shadow;
+    });
+    requestAnimationFrame(tick);
+  }
+  schedule();
   requestAnimationFrame(tick);
 })();
 
