@@ -31,7 +31,11 @@ body{font-family:'Poppins',sans-serif;background:var(--black);color:var(--white)
 nav{position:fixed;top:0;left:0;width:100%;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;z-index:1000;transition:all .4s ease;backdrop-filter:blur(0px)}
 nav.scrolled{background:rgba(0,0,0,.85);backdrop-filter:blur(20px);padding:16px 48px}
 .nav-logo{height:32px;opacity:0;transition:opacity .4s ease;pointer-events:none}
-.nav-logo svg{height:100%;width:auto}
+.nav-logo-inner{display:flex;align-items:center;height:100%;user-select:none}
+.nav-logo-acs{position:relative;display:inline-flex;align-items:center;height:100%}
+.nav-logo-acs-bg{position:absolute;inset:-2px -3px -2px -5px;background:var(--white);clip-path:polygon(8% 0%,100% 0%,92% 100%,0% 100%);z-index:0}
+.nav-logo-acs-text{position:relative;z-index:1;font-size:22px;font-weight:900;color:var(--black);letter-spacing:-1px;padding:0 8px 0 10px;line-height:1}
+.nav-logo-live{font-size:22px;font-weight:900;color:var(--white);letter-spacing:-1px;padding-left:6px;line-height:1}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links li{opacity:0;animation:fadeIn .6s ease forwards}
 .nav-links li:nth-child(1){animation-delay:.4s}
@@ -200,24 +204,9 @@ footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);display:flex;just
 
 <nav id="mainNav">
   <div class="nav-logo">
-    <svg viewBox="0 0 260 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="navGlow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1"/>
-          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur2"/>
-          <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur3"/>
-          <feMerge>
-            <feMergeNode in="blur3"/>
-            <feMergeNode in="blur2"/>
-            <feMergeNode in="blur1"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
-      <polygon points="7,0 108,0 101,50 0,50" fill="white"/>
-      <text x="17" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="black">ACS</text>
-      <text id="navLive" x="112" y="38" font-family="Poppins,sans-serif" font-weight="900" font-size="36" fill="white" filter="url(#navGlow)">LIVE</text>
-    </svg>
+    <div class="nav-logo-inner">
+      <span class="nav-logo-acs"><span class="nav-logo-acs-bg"></span><span class="nav-logo-acs-text">ACS</span></span><span class="nav-logo-live live-flicker" id="navLive">LIVE</span>
+    </div>
   </div>
   <button class="menu-toggle" id="menuToggle" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -406,7 +395,8 @@ navLinks.querySelectorAll('a').forEach(link => {
     logoEl.style.opacity = cur;
     logoEl.style.textShadow = `0 0 ${20*g}px rgba(255,255,255,${0.8*g}),0 0 ${40*g}px rgba(255,255,255,${0.5*g}),0 0 ${80*g}px rgba(255,255,255,${0.3*g}),0 0 ${120*g}px rgba(255,255,255,${0.15*g})`;
     // Apply same flicker to nav LIVE text
-    navLiveEl.setAttribute('opacity', cur);
+    navLiveEl.style.opacity = cur;
+    navLiveEl.style.textShadow = `0 0 ${20*g}px rgba(255,255,255,${0.8*g}),0 0 ${40*g}px rgba(255,255,255,${0.5*g}),0 0 ${80*g}px rgba(255,255,255,${0.3*g}),0 0 ${120*g}px rgba(255,255,255,${0.15*g})`;
     requestAnimationFrame(tick);
   }
   schedule();
